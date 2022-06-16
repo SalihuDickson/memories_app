@@ -14,6 +14,10 @@ app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRouter);
 
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING");
+});
+
 const CONNECTION_URL =
   "mongodb+srv://salihu:1234salihu@cluster0.rmate.mongodb.net/test";
 const PORT = process.env.PORT || 5000;

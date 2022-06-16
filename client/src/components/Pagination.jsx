@@ -13,6 +13,7 @@ const Paginate = ({ page }) => {
 
   const classes = useStyles();
 
+  console.log(page);
   useEffect(() => {
     if (page) {
       dispatch(getPosts(page));
