@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({
+  baseURL: "https://salihu-social-media-api.herokuapp.com/",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -13,7 +15,10 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
-export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
+export const fetchPosts = (page) => {
+  console.log(page);
+  return API.get(`/posts?page=${page}`);
+};
 export const fetchPostsByCreator = (name) =>
   API.get(`/posts/creator?name=${name}`);
 export const fetchPostsBySearch = (searchQuery) =>
@@ -30,5 +35,11 @@ export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}`, updatedPost);
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 
-export const signIn = (formData) => API.post("/user/signin", formData);
-export const signUp = (formData) => API.post("/user/signup", formData);
+export const signIn = (formData) => {
+  console.log(formData);
+  API.post("/user/signin", formData);
+};
+export const signUp = (formData) => {
+  console.log(formData);
+  API.post("/user/signup", formData);
+};
